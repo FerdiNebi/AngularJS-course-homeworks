@@ -20,7 +20,7 @@ GitHubStats.config(function($routeProvider, $httpProvider) {
     $routeProvider.when('/repos/:username', {
         templateUrl: 'partials/user-repos.html',
         controller: 'UserReposCtrl',
-        resolve {
+        resolve: {
             //TODO: Add resolve user logic here
             user: function() {},
             //TODO: Add resolve user logic here
@@ -30,7 +30,7 @@ GitHubStats.config(function($routeProvider, $httpProvider) {
     $routeProvider.when('/repos/:username/:repository', {
         templateUrl: 'partials/repo.html',
         controller: 'RepoCtrl',
-        resolve {
+        resolve: {
             //TODO: Add resolve user logic here
             user: function() {},
             //TODO: Add resolve user logic here
@@ -40,7 +40,7 @@ GitHubStats.config(function($routeProvider, $httpProvider) {
     $routeProvider.when('/stats/users', {
         templateUrl: 'partials/users-stats.html',
         controller: 'UsersStatsCtrl',
-        resolve {
+        resolve: {
             //TODO: Add resolve all users logic here
             users: function() {},
         }
@@ -48,7 +48,7 @@ GitHubStats.config(function($routeProvider, $httpProvider) {
     $routeProvider.when('/stats/users/:username', {
         templateUrl: 'partials/user-repo-stats.html',
         controller: 'UserRepoStatsCtrl',
-        resolve {
+        resolve: {
             //TODO: Add resolve all repos logic here
             repos: function() {},
         }
