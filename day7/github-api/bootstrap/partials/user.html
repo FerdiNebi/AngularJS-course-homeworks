@@ -7,7 +7,7 @@
         <div class="row box-shadow">
            <div class="col-md-6">
              <a ng-href="{{user.htmlUrl}}">
-               <img class="lib-img-show" ng-src="">
+               <img class="lib-img-show" ng-src="{{user.avatarUrl}}">
              </a>
            </div>
            <div class="col-md-6">
@@ -16,9 +16,9 @@
                <div class="lib-header-seperator"></div>
              </div>
              <div class="lib-row lib-desc">
-               Followers : <b></b><br>
-               Following : <b></b><br>
-               Created at: <b></b><br><br><br>
+               Followers : <b>{{user.followers}}</b><br>
+               Following : <b>{{user.following}}</b><br>
+               Created at: <b>{{user.createdAt}}</b><br><br><br>
                <a ng-href="">Repositories</a>
                <a ng-href="">Statistics</a>
              </div>

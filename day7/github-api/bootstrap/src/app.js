@@ -1,7 +1,19 @@
 // Define the github.stats module and export is as the global GitHubStats
-GitHubStats = angular.module('github.stats', ['gRoute', 'utils', 'ngGrid', 'googlechart']);
+GitHubStats = angular.module('github.stats', ['ngRoute', 'utils', 'ngGrid', 'googlechart']);
 //Define constant
 GitHubStats.constant('GITHUB_API', 'https://api.github.com');
+
+GitHubStats.factory('clientInjector', function() {
+    var clientInjector = {
+        request: function(config) {
+            config.url = config.url + '?client_id=8f3b8d572129632cf422&client_secret=f0669941c23378c30fb89f6c37be9075a5628bba';
+            return config;
+        }
+    };
+
+    return clientInjector;
+});
+
 GitHubStats.config(function($routeProvider, $httpProvider) {
     // Configure the $httpProvider
     // Define routes here
@@ -14,7 +26,9 @@ GitHubStats.config(function($routeProvider, $httpProvider) {
         controller: 'UserCtrl',
         resolve: {
             //TODO: Add resolve user logic here
-            user: function() {}
+            user: function(User, $route) {
+                return User.get($route.current.params.username);
+            }
         }
     });
     $routeProvider.when('/repos/:username', {
@@ -34,7 +48,7 @@ GitHubStats.config(function($routeProvider, $httpProvider) {
             //TODO: Add resolve user logic here
             user: function() {},
             //TODO: Add resolve user logic here
-            repos: function() {}
+            repo: function() {}
         }
     });
     $routeProvider.when('/stats/users', {
@@ -56,4 +70,9 @@ GitHubStats.config(function($routeProvider, $httpProvider) {
     $routeProvider.otherwise({
         redirectTo: '/home'
     });
+
+    // Add interceptor
+    $httpProvider.interceptors.push('clientInjector');
 });
+
+

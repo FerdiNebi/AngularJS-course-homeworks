@@ -9,17 +9,18 @@ GitHubStats.factory('User',
   	this.avatarUrl = config.avatar_url;
   	this.createdAt = config.created_at;
   	this.followers = config.followers;
+    this.following = config.following;
   	this.publicReposCount = config.public_repos;
   	this.type = config.type;
   	this.htmlUrl = config.html_url;
 
   	Object.defineProperty(this, "repos", function(){
-  		//TODO: check if this is how repositories are get
-  		Repo.get();
-  	})
+  		Repo.getAllForUser(this.username);
+  	});
   }
 
   User.get = function(username){
+    debugger;
   	var getConfig = {
   		url: GITHUB_API + '/users/{{username}}',
   		context: {username: username},
